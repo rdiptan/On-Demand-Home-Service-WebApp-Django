@@ -1,0 +1,22 @@
+{% extends 'service/index.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+    {% for service in services %}
+    <div class="col-lg-4">
+        <img class="thumbnail" src="{{ service.imageURL }}" />
+        <div class="box-element product">
+            <h6><strong>{{ service.name }}</strong></h6>
+            <hr>
+            <button data-service="{{ service.id }}" data-action="add" class="btn btn-outline-secondary add-btn take-order">Order this Service</button>
+            <a class="btn btn-outline-success" href="#">View</a>
+            <p>{{ service.description }}</p>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock content %}
