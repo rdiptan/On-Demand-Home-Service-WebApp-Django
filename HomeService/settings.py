@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     # own
     'service.apps.ServiceConfig',
+    'accounts.apps.AccountsConfig',
 
     # third-party
     'bootstrapform',
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
