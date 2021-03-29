@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'accounts.User'
+
 
 # Application definition
 
@@ -41,10 +43,14 @@ INSTALLED_APPS = [
 
     # own
     'service.apps.ServiceConfig',
+    'order.apps.OrderConfig',
     'accounts.apps.AccountsConfig',
+    'admins.apps.AdminsConfig',
 
     # third-party
     'bootstrapform',
+    'widget_tweaks',
+    'django_filters',
 
 ]
 
@@ -86,7 +92,7 @@ WSGI_APPLICATION = 'HomeService.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

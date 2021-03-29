@@ -13,7 +13,11 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'service' %}">Services</a>
                     </li>
-
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'orderview' user.id %}">Orders</a>
+                    </li>
+                    {% endif %}
                 </ul>
                 <div class="form-inline my-2 my-lg-0">
                     {% if user.is_authenticated %}
@@ -21,13 +25,8 @@
                     <a href="{% url 'logout' %}" class="btn btn-warning">Logout</a>
                     {% else %}
                     <a href="{% url 'login' %}" class="btn btn-success">Login</a>
-                    <a href="{% url 'register' %}" class="btn btn-success">Register</a>
+                    <a href="{% url 'register_customer' %}" class="btn btn-success">Register</a>
                     {% endif %}
-
-                    <a href="{% url 'order' %}">
-                        <img id="order-icon" src="{% static 'images/DRT.png' %}" />
-                    </a>
-
                 </div>
             </div>
         </div>

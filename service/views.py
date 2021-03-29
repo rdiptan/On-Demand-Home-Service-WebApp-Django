@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import *
+from .forms import ServiceForm
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import HttpResponse
 
 
 # Create your views here.
@@ -12,23 +14,46 @@ def service(request):
     }
     return render(request, 'service/service.html', context)
 
-@login_required(login_url='login')
-def order(request):
-    if request.user.is_authenticated:
-        customer = request.user.customer
-        order, created = Order.objects.get_or_create(
-            customer=customer, complete=False)
-        items = order.orderedservice_set.all()
-    else:
-        items = []
-    context = {
-        'items': items
-    }
-    return render(request, 'service/order.html', context)
 
-@login_required(login_url='login')
-def checkout(request):
+def add_service(request):
+    form = ServiceForm()
     context = {
-
+        'form': form
     }
-    return render(request, 'service/checkout.html', context)
+    return render(request, 'service/addService.html', context)
+
+
+def post_service(request):
+    if request.method == 'POST':
+        form = ServiceForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('getservice')
+    context = {
+        'form': ServiceForm
+    }
+    return render(request, 'service/postService.html', context)
+
+def get_service(request):
+    service = Service.objects.all()
+    context = {
+        'service': service
+    }
+    return render(request, 'service/getService.html', context)
+
+def update_service(request, service_id):
+    instance = Service.objects.get(id= service_id)
+    if request.method == 'POST':
+        form = ServiceForm(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('getservice')
+    context = {
+        'form': ServiceForm(instance=instance)
+    }
+    return render(request, 'service/updateService.html', context)
+
+def delete_service(request, service_id):
+    service = Service.objects.get(id = service_id)
+    service.delete()
+    return redirect('getservice')

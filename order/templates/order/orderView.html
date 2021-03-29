@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+	<div class="row">
+        <div class="col-md">
+            <table class="table table-sm">
+                <tr>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                </tr>
+                {% for i in orderitems %}
+
+                <tr>
+                    <td>{{i.date_ordered}}</td>
+                    <td>{{i.service.name}}</td>
+                    <td>{{i.status}}</td>
+                </tr>
+
+                {% endfor %}
+            </table>
+
+        </div>
+    </div>
+{% endblock content %}
