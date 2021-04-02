@@ -6,6 +6,10 @@ from accounts.auth import admin_only
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from order.models import Order
+from .forms import ProductForm
+from django.views.generic import ListView, CreateView
+from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -70,3 +74,20 @@ def update_user_to_admin(request, user_id):
     user.save()
     messages.add_message(request, messages.SUCCESS, 'User has been updated to Admin')
     return redirect('/admin-dashboard')
+
+@method_decorator(admin_only , name='dispatch')
+class AdminServiceListView(ListView):
+    template_name = "admins/adminservicelist.html"
+    queryset = Service.objects.all().order_by("-id")
+    context_object_name = "allservice"
+
+ 
+@method_decorator(admin_only , name='dispatch')
+class AdminServiceCreateView(CreateView):
+    template_name = "admins/adminservicecreate.html"
+    form_class = ProductForm
+    success_url = reverse_lazy("view_service")
+ 
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)

@@ -30,7 +30,7 @@
     <div class="card text-white bg-primary mb-3" style="max-width: 35rem;">
         <div class="card-header text-center">Total Service</div>
         <div class="card-body">
-            <h1 class="card-title text-center">{{service}}</h1>
+            <a href="{% url 'view_service' %}"><h1 class="card-title text-center">{{service}}</h1></a>
 
         </div>
     </div>
@@ -39,7 +39,7 @@
             <div class="card text-white bg-warning mb-3" style="max-width: 35rem;">
                 <div class="card-header text-center">Total Orders</div>
                 <div class="card-body">
-                    <h1 class="card-title text-center">{{order}}</h1>
+                    <a href="#"><h1 class="card-title text-center">{{order}}</h1></a>
 
                 </div>
             </div>
@@ -51,7 +51,7 @@
             <div class="card text-white bg-danger mb-3" style="max-width: 35rem;">
                 <div class="card-header text-center">Total Admins</div>
                 <div class="card-body">
-                    <a href="/admin-dashboard/show-user"><h1 class="card-title text-center">{{admin}}</h1></a>
+                    <a href="{% url 'show_user' %}"><h1 class="card-title text-center">{{admin}}</h1></a>
 
                 </div>
             </div>
@@ -60,7 +60,7 @@
             <div class="card text-white bg-success mb-3" style="max-width: 35rem;">
                 <div class="card-header text-center">New</div>
                 <div class="card-body">
-                    <h1 class="card-title text-center">Later</h1>
+                    <a href="#"><h1 class="card-title text-center">Later</h1></a>
 
                 </div>
             </div>
@@ -71,7 +71,7 @@
             <div class="card text-white bg-danger mb-3" style="max-width: 35rem;">
                 <div class="card-header text-center">Total Servicemen</div>
                 <div class="card-body">
-                    <h1 class="card-title text-center">{{servicemen}}</h1>
+                    <a href="#"><h1 class="card-title text-center">{{servicemen}}</h1></a>
 
                 </div>
             </div>
@@ -80,7 +80,7 @@
             <div class="card text-white bg-success mb-3" style="max-width: 35rem;">
                 <div class="card-header text-center">Total Customers</div>
                 <div class="card-body">
-                    <h1 class="card-title text-center">{{customer}}</h1>
+                    <a href="#"><h1 class="card-title text-center">{{customer}}</h1></a>
 
                 </div>
             </div>

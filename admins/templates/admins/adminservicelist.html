@@ -1,0 +1,37 @@
+{% extends 'admins/layout-admin.html' %}
+{% load static %}
+{% block title %}
+<title>All products</title>
+{% endblock %}
+
+
+{% block content %}
+<div class="container"> 
+    <div class="row">
+        <div class="col-md-12">
+            <h3>All Service list</h3><hr>
+            <a href="{% url 'create_service' %}">Add New Service</a>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>SN</th>
+                        <th>Service Name</th>
+                        <th>Description</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in allservice %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{i.name}}</td>
+                        <td>{{i.description}}</td>
+                        <td><img src="{{i.image.url}}" style="height: 60px;" alt=""></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
