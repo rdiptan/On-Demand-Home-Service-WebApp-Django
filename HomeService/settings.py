@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'order.apps.OrderConfig',
     'accounts.apps.AccountsConfig',
     'admins.apps.AdminsConfig',
+    'servicemen.apps.ServicemenConfig',
 
     # third-party
     'bootstrapform',
