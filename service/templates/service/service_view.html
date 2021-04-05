@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-8">
+            {% if services.image %}
+            <figure>
+                <img src="{{ services.image.url }}" class="img-fluid">
+            </figure>
+         {% endif %}
+        </div>
+        <div class="col-lg-4">
+            <h1>{{ services.name }}</h1>
+            <p>{{ services.description }}</p>
+            <button data-service="{{ service.id }}" data-action="add" class="btn btn-outline-info add-btn take-order">Order this Service</button>
+        </div>
+
+</div>
+</div>
+    
+{% endblock content %}

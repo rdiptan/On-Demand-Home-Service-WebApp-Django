@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+{% load bootstrap %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h1>Confirm Order</h1>
+                <form class="form" action="" method="POST">
+                    {% csrf_token %}
+                    {{ form | bootstrap_horizontal }}
+                    <button type="submit class="btn btn-primary>Confirm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

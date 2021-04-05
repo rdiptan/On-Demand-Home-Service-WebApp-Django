@@ -1,0 +1,39 @@
+{% extends 'index.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>All Orders</h3><hr>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>SN</th>
+                        <th>Order ID </th>
+                        <!-- <th>Customer</th> -->
+                        <th>Address</th>
+                        <th>Service</th>
+                        <th>Ordered Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in allorders %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td><a href="{% url 'servicemen_order_detail' order.id %}">#ORDER_</a></td>
+                        <!-- <td>{{order.name}}</td> -->
+                        <td>{{order.address.address}}</td>
+                        <td>{{order.service.name}}</td>
+                        <td>{{order.date_ordered}}</td>
+                        <td>{{order.status}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -16,20 +16,15 @@ class Order(models.Model):
     service = models.ForeignKey(Service, on_delete=models.SET_NULL, blank=True, null=True)
     description = models.CharField(max_length=2000, null=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=200, null=True, choices=STATUS)
+    status = models.CharField(max_length=200, null=True, choices=STATUS, default="Pending")
+    address = models.CharField(max_length=100, null=True)
+    street = models.CharField(max_length=100, null=True)
+
+    class Meta:
+        ordering = ['-date_ordered']
 
     def __str__(self):
         return str(self.id)
-
-
-class ServiceDeliveryAddress(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
-    order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
-    address = models.CharField(max_length=500, null=True)
-    date_added = models.DateTimeField(auto_now_add=True, null=True)
-
-    def __str__(self):
-        return self.address
 
 
 class Payment(models.Model):
