@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.service, name="service"),
-    path('<slug:service_slug>/', views.view_service, name="serviceview"),
+    path('viewservice/<slug:service_slug>/', views.view_service, name="serviceview"),
     path('addservice', views.add_service, name="addservice"),
     path('postservice', views.post_service, name="postservice"),
     path('getservice', views.get_service, name="getservice"),
