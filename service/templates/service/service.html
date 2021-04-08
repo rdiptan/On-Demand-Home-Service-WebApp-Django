@@ -11,7 +11,7 @@
         <div class="box-element product">
             <h6><strong>{{ service.name }}</strong></h6>
             <hr>
-            <a href="{% url 'checkout' %}" class="btn btn-outline-info add-btn take-order">Order this Service</a>
+            <a href="{% url 'checkout' service.id %}" class="btn btn-outline-info add-btn take-order">Order this Service</a>
             <a class="btn btn-outline-success" href="{% url 'serviceview' service.slug %}">View</a>
             <p>{{ service.description }}</p>
         </div>
