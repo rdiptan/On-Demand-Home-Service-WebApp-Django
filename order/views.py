@@ -22,51 +22,20 @@ def order_view(request, id):
     }
     return render(request, 'order/orderView.html', context)
 
-
 @login_required(login_url='login')
-def order(request):
-    if request.user.is_customer:
-        customer = request.user.customer
-        order, created = Order.objects.get_or_create(
-            customer=customer, complete=False)
-        items = order.orderedservice_set.all()
-    else:
-        items = []
-    context = {
-        'items': items
-    }
-    return render(request, 'order/order.html', context)
-
-@login_required(login_url='login')
-# def checkout(request, customer, service, description, address, street):
-    # order = Order.objects.create()
 def checkout(request, id):
-    # service = Service.objects.get(id=id)
-
-    # if request.method == 'POST':
-    #     form = OrderForm(request.POST)
-    #     if form.is_valid():
-    #         form.save()
-    #         return redirect(checkout)
-    # context = {
-    #     'form': OrderForm
-    # }
-    # return render(request, 'order/orderform.html', context)
-
     customer = Customer.objects.filter(created_by = request.user).first()
     # service_id = request.GET.get('service_id')
-    # print(service_id)
     service = Service.objects.get(id=id)
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
             form.save(customer, service)
-            return redirect('service')
+            return redirect('thankyou')
     context = {
         'form': OrderForm
     }
     return render(request, 'order/orderform.html', context)
 
-    # Order(user=user, service=service).save()
-    # return redirect('service')
-    
+def thankyou(request):
+    return render(request, 'order/thankyou.html')

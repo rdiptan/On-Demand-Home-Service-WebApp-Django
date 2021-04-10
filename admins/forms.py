@@ -19,6 +19,5 @@ class ProductForm(forms.ModelForm):
                 "placeholder": "Enter the service description here..."
             }),
             "image": forms.ClearableFileInput(attrs={
-                "class": "form-control"
             }),     
         }
