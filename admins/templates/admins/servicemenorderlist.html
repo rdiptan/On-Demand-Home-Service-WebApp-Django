@@ -1,4 +1,4 @@
-{% extends 'servicemen/layout-servicemen.html' %}
+{% extends 'admins/layout-admin.html' %}
 {% load static %}
 
 
@@ -6,8 +6,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h3>All Orders</h3><hr>
-            <table class="table">
+            <h3 class="text-center">All Orders</h3><hr>
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>SN</th>
@@ -17,14 +17,14 @@
                         <th>Address</th>
                         <th>Service Name</th>
                         <th>Ordered Date</th>
-                        <th>Ordered Status</th>
+                        <th>Order Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for order in allorders %}
                     <tr>
                         <td>{{forloop.counter}}</td>
-                        <td><a href="{% url 'servicemen_order_detail' order.id %}">#ORDER_</a></td>
+                        <td><a href="{% url 'admin_servicemen_order_detail' order.id %}">#ORDER_</a></td>
                         <td>{{order.customer.created_by.first_name}} {{order.customer.created_by.last_name}}</td>
                         <td>{{order.customer.phone}}</td>
                         <td>{{order.street}}, {{order.address}}</td>

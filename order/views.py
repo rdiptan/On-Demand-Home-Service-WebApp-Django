@@ -13,9 +13,9 @@ from accounts.models import Customer
 # Create your views here.
 
 @login_required(login_url='login')
-def order_view(request, id):
-    customer = Customer.objects.get(id=id)
-    order_view = Order.objects.all()
+def order_view(request):
+    customer = customer = Customer.objects.filter(created_by = request.user).first()
+    order_view = Order.objects.filter(customer_id=customer.id)
     context = {
         'customer' : customer,
         'orderitems': order_view

@@ -8,6 +8,7 @@ class User(AbstractUser):
     is_servicemen =  models.BooleanField(default=False)
     first_name = models.CharField(max_length=200, null=True)
     last_name = models.CharField(max_length=200, null=True)
+    email = models.EmailField()
 
 class Customer(models.Model):
     phone = models.CharField(max_length=15, null=True)
@@ -25,9 +26,10 @@ class ServiceMen(models.Model):
     phone = models.CharField(max_length=15, null=True)
     address = models.CharField(max_length=200, null=True)
     expertise = models.CharField(max_length=200, null=True)
+    is_available = models.BooleanField(default = True)
 
     created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.OneToOneField(User, related_name='servicmenuser', on_delete=models.CASCADE, primary_key=True)
+    created_by = models.OneToOneField(User, related_name='servicmenuser', on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['created_by']

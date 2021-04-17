@@ -10,6 +10,7 @@ class CustomerSignUpForm(UserCreationForm):
     first_name = forms.CharField(required=True)
     last_name = forms.CharField(required=True)
     phone = forms.CharField(required=True)
+    email = forms.EmailField(required=True)
     address = forms.CharField(required=True)
 
     class Meta(UserCreationForm.Meta):
@@ -21,6 +22,7 @@ class CustomerSignUpForm(UserCreationForm):
         user.is_customer = True
         user.first_name = self.cleaned_data.get('first_name')
         user.last_name = self.cleaned_data.get('last_name')
+        user.email = self.cleaned_data.get('email')
         user.save()
         customer = Customer.objects.create(created_by=user)
         customer.phone = self.cleaned_data.get('phone')
@@ -32,6 +34,7 @@ class ServicemenSignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=200, required=True)
     last_name = forms.CharField(max_length=200, required=True)
     phone = forms.CharField(max_length=15, required=True)
+    email = forms.EmailField(required=True)
     address = forms.CharField(max_length=200, required=True)
     expertise = forms.CharField(max_length=200, required=True)
 
@@ -44,6 +47,7 @@ class ServicemenSignUpForm(UserCreationForm):
         user.is_servicemen = True
         user.first_name = self.cleaned_data.get('first_name')
         user.last_name = self.cleaned_data.get('last_name')
+        user.email = self.cleaned_data.get('email')
         user.save()
         servicemen = ServiceMen.objects.create(created_by=user)
         servicemen.phone = self.cleaned_data.get('phone')

@@ -1,4 +1,4 @@
-{% extends 'servicemen/layout-servicemen.html' %}
+{% extends 'admins/layout-admin.html' %}
 {% load static %}
 
 
@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 mx-auto">
-            <h3>Order Detail</h3>
+            <h3 class="text-center">Order Detail</h3>
             <hr>
             <p><span class="font-weight-bold">Order ID: </span> #ORDER_{{ord_obj.id}}</p>
             <p><span class="font-weight-bold">Order Status: </span> {{ord_obj.status}}</p>
@@ -14,14 +14,14 @@
             <p><span class="font-weight-bold">Customer Name: </span> {{ord_obj.customer.created_by.first_name}} {{ord_obj.customer.created_by.last_name}}</p>
             <p><span class="font-weight-bold">Service Required Address: </span>{{ord_obj.street}}, {{ord_obj.address}}</p>
             <p><span class="font-weight-bold">Contact Number: </span>{{ord_obj.customer.phone}}</p>
-       
+
             <hr>
             <h5>Service: {{ord_obj.service.name}}</h5>
             <h5>Problem: {{ord_obj.description}}</h5>
             <h5>Servicemen: {{ord_obj.servicemen.created_by.first_name}} {{ord_obj.servicemen.created_by.first_name}}</h5>
             <hr>
 
-            <form action="{% url 'servicemen_orderstatus_change' ord_obj.id %}" method="POST">
+            <form action="{% url 'admin_servicemen_orderstatus_change' ord_obj.id %}" method="POST">
                 {% csrf_token %}
                 <select name="status">
                     {% for i, j in allstatus %}

@@ -1,12 +1,11 @@
 from django.db import models
-from accounts.models import Customer 
+from accounts.models import Customer, ServiceMen 
 from service.models import Service
 
 # Create your models here.
 
 class Order(models.Model):
     STATUS = (
-        ("Pending", "Pending"),
         ("Reviewed", "Reviewed"),
         ("Expert Assigned", "Expert Assigned"),
         ("Working", "Working"),
@@ -17,8 +16,9 @@ class Order(models.Model):
     description = models.CharField(max_length=2000, null=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=200, null=True, choices=STATUS, default="Pending")
-    address = models.CharField(max_length=100, null=True)
     street = models.CharField(max_length=100, null=True)
+    address = models.CharField(max_length=100, null=True)
+    servicemen = models.ForeignKey(ServiceMen, on_delete=models.SET_NULL, blank=True, null=True)
 
     class Meta:
         ordering = ['-date_ordered']

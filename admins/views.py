@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from order.models import Order
 from .forms import ProductForm
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView, View
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.contrib.auth import get_user_model
@@ -22,6 +22,8 @@ def admin_dashboard(request):
     service_count = service.count()
     order = Order.objects.all()
     order_count = order.count()
+    new_order = Order.objects.filter(status = 'Pending')
+    new_order_count = new_order.count()
     users = User.objects.all()
     admin_count = users.filter(is_staff=1).count()
     customer_count = users.filter(is_customer=1).count()
@@ -30,6 +32,7 @@ def admin_dashboard(request):
     context = {
         'service': service_count,
         'order': order_count,
+        'new_order': new_order_count,
         'admin': admin_count,
         'customer': customer_count,
         'servicemen': servicemen_count,
@@ -112,3 +115,37 @@ def delete_service(request, service_id):
     service = Service.objects.get(id = service_id)
     service.delete()
     return redirect('view_service')
+
+@method_decorator(admin_only , name='dispatch')
+class ServicemenOrderDetailView(DetailView):
+    template_name = "admins/servicemenorderdetail.html"
+    model = Order
+    context_object_name = "ord_obj"
+ 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["allstatus"] = Order.STATUS
+        return context
+ 
+@method_decorator(admin_only , name='dispatch')
+class ServicemenOrderListView(ListView):
+    template_name = "admins/servicemenorderlist.html"
+    queryset = Order.objects.all().order_by("-id")
+    context_object_name = "allorders"
+ 
+@method_decorator(admin_only , name='dispatch') 
+class ServicemenOrderStatuChangeView(View):
+    def post(self, request,*args, **kwargs):
+        order_id = self.kwargs["pk"]
+        order_obj = Order.objects.get(id=order_id)
+        new_status = request.POST.get("status")
+        print(new_status)
+        order_obj.status = new_status
+        order_obj.save()
+        return redirect(reverse_lazy("admin_servicemen_order_detail", kwargs={"pk": order_id}))
+
+@method_decorator(admin_only , name='dispatch')
+class ServicemenNewOrderListView(ListView):
+    template_name = "admins/servicemenorderlist.html"
+    queryset = Order.objects.filter(status = 'Pending').order_by("-id")
+    context_object_name = "allorders"

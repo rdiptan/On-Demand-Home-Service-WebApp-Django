@@ -24,3 +24,6 @@ def user_only(view_function):
         else:
             return view_function(request, *args, **kwargs)
     return wrapper_function
+
+def servicemen_only(view_function):
+    pass

@@ -15,17 +15,17 @@
     }
 </style>
 <div class="container">
-    <h1>Dashboard</h1>
+    <h1></h1>
     {% for message in messages %}
     {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
     <h6 class="success_message py-3 px-1 my-2 text-center">{{message}}</h6>
     {% endif %}
 
-    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR%}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
     <h6 class="error_message py-3 px-1 my-2 text-center">{{message}}</h6>
     {% endif %}
     {% endfor %}
-    <div class="row">
+    <div class="row pt-3">
         <div class="col">
     <div class="card text-white bg-primary mb-3" style="max-width: 35rem;">
         <div class="card-header text-center">Total Service</div>
@@ -39,14 +39,14 @@
             <div class="card text-white bg-warning mb-3" style="max-width: 35rem;">
                 <div class="card-header text-center">Total Orders</div>
                 <div class="card-body">
-                    <a href="#"><h1 class="card-title text-center">{{order}}</h1></a>
+                    <a href="{% url 'admin_servicemen_order' %}"><h1 class="card-title text-center">{{order}}</h1></a>
 
                 </div>
             </div>
         </div>
 
     </div>
-    <div class="row"> 
+    <div class="row pt-2"> 
         <div class="col">
             <div class="card text-white bg-danger mb-3" style="max-width: 35rem;">
                 <div class="card-header text-center">Total Admins</div>
@@ -58,15 +58,15 @@
         </div>
         <div class="col">
             <div class="card text-white bg-success mb-3" style="max-width: 35rem;">
-                <div class="card-header text-center">New</div>
+                <div class="card-header text-center">New Orders</div>
                 <div class="card-body">
-                    <a href="#"><h1 class="card-title text-center">Later</h1></a>
+                    <a href="{% url 'admin_servicemen_neworder'%}"><h1 class="card-title text-center">{{new_order}}</h1></a>
 
                 </div>
             </div>
         </div>
     </div>
-    <div class="row"> 
+    <div class="row pt-2"> 
         <div class="col">
             <div class="card text-white bg-danger mb-3" style="max-width: 35rem;">
                 <div class="card-header text-center">Total Servicemen</div>

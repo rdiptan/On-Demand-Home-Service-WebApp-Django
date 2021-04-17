@@ -1,0 +1,11 @@
+{% extends 'servicemen/layout-servicemen.html' %}
+{% load static %}
+
+
+{% block content %}
+<form method = "POST" action=".">
+    {% csrf_token %}
+    <input type="submit" name="change_availability" value="Change Availability">
+</form>
+{{servicemen.is_available}}
+{% endblock content %}
