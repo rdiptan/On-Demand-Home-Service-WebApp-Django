@@ -48,7 +48,7 @@
                 <a class="nav-link" href="{% url 'service' %}"><i class="fab fa-usps"></i>Services</a>
             </li>
             {% if user.is_customer %}
-            <li class="nav-item {{activate_about}}">
+            <li class="nav-item {{about}}">
                 <a class="nav-link" href="{% url 'about' %}"><i class="fas fa-info-circle"></i>About</a>
             </li>
             <li class="nav-item {{activate_order}} {{order_checkout}} {{activate_thanks}}">

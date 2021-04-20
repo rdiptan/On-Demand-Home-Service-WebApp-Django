@@ -121,7 +121,7 @@ def update_service(request, service_id):
         form = ServiceForm(request.POST, instance=instance)
         if form.is_valid():
             form.save()
-            return redirect('getservice')
+            return redirect('view_service')
     context = {
         'form': ServiceForm(instance=instance),
         'activate_update_service' : 'active'

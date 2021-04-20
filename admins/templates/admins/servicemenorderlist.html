@@ -1,6 +1,8 @@
 {% extends 'index.html' %}
 {% load static %}
-
+{% block title %}
+Admin Order
+{% endblock title%}
 
 {% block content %}
 <div class="container">
@@ -13,7 +15,7 @@
                     <button class="btn btn-primary btn-sm" type="submit">Search</button>
                 </form>
             </div>
-            <table class="table table-striped">
+            <table class="table table-striped table-responsive-md">
                 <thead>
                     <tr>
                         <th>SN</th>

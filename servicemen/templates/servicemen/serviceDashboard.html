@@ -1,7 +1,8 @@
 {% extends 'index.html' %}
 {% load static %}
-
-
+{% block title %}
+Servicemen Dashboard
+{% endblock title%}
 {% block content %}
 <style>
     .card-body a{
@@ -16,9 +17,17 @@
 <div class="container">
 <form method = "POST" action=".">
     {% csrf_token %}
-    <input type="submit" name="change_availability" value="Change Availability">
+    {% if servicemen.is_available == True %}
+    <input class="btn btn-success" type="submit" name="change_availability" value="Available - Change Availability">
+    {% else %}
+    <input class="btn btn-danger" type="submit" name="change_availability" value="Not Available - Change Availability">
+    {% endif %}
 </form>
-{{servicemen.is_available}}
+<!-- {% if servicemen.is_available == True %}
+<h1 style="color: green;">Available</h1>
+{% else %}
+<h1 style="color: red;">Not Available</h1>
+{% endif %} -->
 
     <div class="row pt-3">
         <div class="col">
