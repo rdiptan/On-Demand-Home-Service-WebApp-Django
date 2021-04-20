@@ -24,6 +24,10 @@ def order_view(request):
     }
     return render(request, 'order/orderView.html', context)
 
+from django.core.mail import EmailMessage
+from django.conf import settings
+from django.template.loader import render_to_string
+
 @login_required
 @customer_required
 def checkout(request, id):
@@ -34,6 +38,16 @@ def checkout(request, id):
         form = OrderForm(request.POST)
         if form.is_valid():
             form.save(customer, service)
+            template = render_to_string('order/mailbody.html', {'name':request.user.first_name, 'service':service.name})
+
+            email = EmailMessage(
+                'Thank you for ordering our service',
+                template,
+                settings.EMAIL_HOST_USER,
+                [request.user.email],
+            )
+            email.fail_silently = False
+            email.send()
             return redirect('thankyou')
     context = {
         'service': service,
