@@ -17,7 +17,11 @@ Service
         <div class="col-lg-4">
             <h1>{{ services.name }}</h1>
             <p>{{ services.description }}</p>
-            <a href="{% url 'checkout' services.id %}" data-service="{{ service.id }}" data-action="add" class="btn btn-outline-info add-btn take-order">Order this Service</a>
+            {% if request.user.is_staff or request.user.is_servicemen %}
+            <p style="color: tomato;">Customer account needed to order the services.</p>
+            {% else %}
+            <a href="{% url 'checkout' services.id %}" data-service="{{ service.id }}" data-action="add" class="btn btn-outline-success add-btn take-order">Order this Service</a>
+            {% endif %}
         </div>
 
 </div>
