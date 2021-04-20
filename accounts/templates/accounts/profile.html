@@ -19,17 +19,29 @@ font-weight:bold;
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1>Current Details</h1>
+            <h1 class="text-center">Current Details</h1>
             <div class="card">
-                <div class="card-body">
-                    <img src="{{request.user.profile.profile_pic.url}}" width="400" class="img-responsive">
-
+                <div class="card-header">
+                    {% if user.is_customer %}
+                    <div class="py-3">Username : {{cus_id.created_by.username}}</div>
+                    <div class="py-3">Firstname : {{cus_id.created_by.first_name}}</div>
+                    <div class="py-3">Lastname : {{cus_id.created_by.first_name}}</div>
+                    <div class="py-3">Email : {{cus_id.created_by.email}}</div>
+                    <div class="py-3">Phone : {{request.user.customeruser.phone}}</div>
+                    <div class="py-3">Address : {{request.user.customeruser.address}}</div>
+                    {% endif %}
+                    {% if user.is_servicemen %}
+                    <div class="py-3">Username : {{ser_id.created_by.username}}</div>
+                    <div class="py-3">Firstname : {{ser_id.created_by.first_name}}</div>
+                    <div class="py-3">Lastname : {{ser_id.created_by.first_name}}</div>
+                    <div class="py-3">Email : {{ser_id.created_by.email}}</div>
+                    <div class="py-3">Phone : {{request.user.servicmenuser.phone}}</div>
+                    <div class="py-3">Address : {{request.user.servicmenuser.address}}</div>
+                    <div class="py-3">Expertise : {{request.user.servicmenuser.expertise}}</div>
+                    {% endif %}
                 </div>
                 <div class="card-footer">
-                    <div class="py-3">Firstname : {{request.user.customeruser.first_name}}</div>
-                    <div class="py-3">Lastname : {{request.user.customeruser.last_name}}</div>
-                    <div class="py-3">Email : {{request.user.customeruser.email}}</div>
-                    <div class="py-3">Phone : {{request.user.customeruser.phone}}</div>
+                    <a class="btn btn-outline-warning" href="{% url 'password_change' %}">Change Password</a>
                 </div>
             </div>
         </div>
@@ -48,8 +60,9 @@ font-weight:bold;
                 <div class="card py-2 px-2">
                     <form class="form" action="" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
-                        {{ form }}
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        {{ form1 | bootstrap }}
+                        {{ form2 | bootstrap}}
+                        <button type="submit" class="btn btn-outline-success">Submit</button>
                     </form>
                 </div>
             </div>
@@ -58,17 +71,5 @@ font-weight:bold;
 
     </div>
 </div>
-<script>
-    var form_fields = document.getElementsByTagName('input')
-    form_fields[1].placeholder = 'Enter first name';
-    form_fields[2].placeholder = 'Enter last name';
-    form_fields[3].placeholder = 'Enter email address';
-    form_fields[4].placeholder = 'Enter phone number';
-
-    for (var field in form_fields){
-    field.className += ' form-control my-2'
-    }
-
-</script>
 
 {% endblock content %}

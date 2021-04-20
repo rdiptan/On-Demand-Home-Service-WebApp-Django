@@ -3,7 +3,7 @@ from .models import Order
 
 class OrderForm(ModelForm):
     class Meta:
-        exclude = ('customer', 'service', 'status')
+        exclude = ('customer', 'service', 'status', 'servicemen')
         model = Order
         
     def save(self, customer, service):

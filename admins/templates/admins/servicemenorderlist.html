@@ -1,4 +1,4 @@
-{% extends 'admins/layout-admin.html' %}
+{% extends 'index.html' %}
 {% load static %}
 
 
@@ -6,7 +6,13 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h3 class="text-center">All Orders</h3><hr>
+            <h3 class="text-center">Orders</h3><hr>
+            <div class="card card-body">
+                <form class="form" method="get">
+                    {{order_filter.form}}
+                    <button class="btn btn-primary btn-sm" type="submit">Search</button>
+                </form>
+            </div>
             <table class="table table-striped">
                 <thead>
                     <tr>

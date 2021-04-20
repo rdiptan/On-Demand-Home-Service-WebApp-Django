@@ -1,4 +1,4 @@
-{% extends 'admins/layout-admin.html' %}
+{% extends 'index.html' %}
 {% block content %}
     <div class="container">
         <div class="row">
@@ -23,8 +23,8 @@
                             
                             <td><img src="{{ i.imageURL }}" width="100rem" /></td>
                             <td>
-                                <a href="{% url 'updateservice' i.id %}" class="btn btn-primary">Edit</a> &nbsp;
-                                <a href="{% url 'deleteservice' i.id %}" class="btn btn-danger" onclick="return confirm('Are you sure want to delete this service?')">Delete</a>
+                                <a href="{% url 'updateservice' i.id %}" class="btn btn-outline-primary">Edit</a> &nbsp;
+                                <a href="{% url 'deleteservice' i.id %}" class="btn btn-outline-danger" onclick="return confirm('Are you sure want to delete this service?')">Delete</a>
                             </td>
                         </tr>
                         {% endfor %}

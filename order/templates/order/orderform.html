@@ -2,16 +2,35 @@
 {% load bootstrap %}
 {% load static %}
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <h1>Confirm Order</h1>
-                <form class="form" action="" method="POST">
-                    {% csrf_token %}
-                    {{ form | bootstrap_horizontal }}
-                    <button type="submit class="btn btn-primary>Confirm</button>
-                </form>
-            </div>
+<div class="row">
+    <div class="col">
+        <div class="card">
+        {% if service.image %}
+        <figure>
+            <img src="{{ service.image.url }}" class="img-fluid">
+        </figure>
+        {% endif %}
+        <h1>{{ service.name }}</h1>
+        <p>{{ service.description }}</p>
         </div>
     </div>
+    <div class="col-md-6">
+        <h1>Confirm Order</h1>
+        <form class="form" action="" method="POST">
+            {% csrf_token %}
+            {{ form | bootstrap_horizontal }}
+            <button type="submit class=" class="btn btn-primary ml-3 px-4 btn-lg">Confirm</button>
+        </form>
+    </div>
+</div>
+<script>
+    var form_fields = document.getElementsByTagName('input')
+    form_fields[1].placeholder = 'Describe your Problem here...';
+    form_fields[2].placeholder = 'Enter your street name...';
+    form_fields[3].placeholder = 'Enter your locality name...';
+
+    for (var field in form_fields){
+    field.className += 'form-control my-2'
+    }
+</script>
 {% endblock content %}

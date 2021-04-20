@@ -56,15 +56,20 @@ class ServicemenSignUpForm(UserCreationForm):
         servicemen.save()
         return user
 
+class UserForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
+
 class CustomerProfileForm(ModelForm):
     class Meta:
         model = Customer
-        fields = '__all__'
+        fields = ['phone','address']
 
 class ServicemenProfileForm(ModelForm):
     class Meta:
         model = ServiceMen
-        fields = '__all__'
+        fields = ['phone', 'address', 'expertise']
 
 class UserPasswordResetForm(PasswordResetForm):
     email = forms.EmailField(label=('Email'), max_length=254, widget=forms.EmailInput(

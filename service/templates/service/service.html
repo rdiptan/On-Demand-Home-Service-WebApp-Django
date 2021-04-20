@@ -4,6 +4,14 @@
 {% block content %}
 
 <div class="container">
+    <div class="d-flex justify-content-end">
+        <div class="p-2">
+        <form class="form" method="get">
+            {{service_filter.form}}
+            <button class="btn btn-primary btn-sm">Search</button>
+        </form>
+        </div>
+    </div>
 <div class="row">
     {% for service in services %}
     <div class="col-lg-4">
@@ -11,8 +19,8 @@
         <div class="box-element product">
             <h6><strong>{{ service.name }}</strong></h6>
             <hr>
-            <a href="{% url 'checkout' service.id %}" class="btn btn-outline-info">Order this Service</a>
-            <a class="btn btn-outline-success btn-block" href="{% url 'serviceview' service.slug %}">View</a>
+            <a href="{% url 'checkout' service.id %}" class="btn btn-outline-success ml-1 mb-2">Order this Service</a>
+            <a class="btn btn-outline-info ml-1 mb-2" href="{% url 'serviceview' service.slug %}">View this Service </a>
             <p>{{ service.description|slice:":34" }}...</p>
         </div>
     </div>

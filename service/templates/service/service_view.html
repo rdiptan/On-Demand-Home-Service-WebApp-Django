@@ -15,7 +15,7 @@
         <div class="col-lg-4">
             <h1>{{ services.name }}</h1>
             <p>{{ services.description }}</p>
-            <button data-service="{{ service.id }}" data-action="add" class="btn btn-outline-info add-btn take-order">Order this Service</button>
+            <a href="{% url 'checkout' services.id %}" data-service="{{ service.id }}" data-action="add" class="btn btn-outline-info add-btn take-order">Order this Service</a>
         </div>
 
 </div>

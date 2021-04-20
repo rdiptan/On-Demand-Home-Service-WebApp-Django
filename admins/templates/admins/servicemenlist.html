@@ -1,0 +1,39 @@
+{% extends 'index.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="text-center">Servicemens</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>SN</th>
+                        <th>Serviceman Name</th>
+                        <th>Contact</th>
+                        <th>Address</th>
+                        <th>Expertise</th>
+                        <th>Joined Date</th>
+                        <th>Availability</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in allservicemen %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{i.created_by.first_name}} {{order.customer.created_by.last_name}}</td>
+                        <td>{{i.phone}}</td>
+                        <td>{{i.address}}</td>
+                        <td>{{i.expertise}}</td>
+                        <td>{{i.created_at}}</td>
+                        <td>{{i.is_available}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,11 +1,45 @@
-{% extends 'servicemen/layout-servicemen.html' %}
+{% extends 'index.html' %}
 {% load static %}
 
 
 {% block content %}
+<style>
+    .card-body a{
+    text-decoration:none;
+    color:#fff;
+    }
+
+    .card-body a:hover{
+    color:orange;
+    }
+</style>
+<div class="container">
 <form method = "POST" action=".">
     {% csrf_token %}
     <input type="submit" name="change_availability" value="Change Availability">
 </form>
 {{servicemen.is_available}}
+
+    <div class="row pt-3">
+        <div class="col">
+    <div class="card text-white bg-primary mb-3" style="max-width: 35rem;">
+        <div class="card-header text-center">New Orders</div>
+        <div class="card-body">
+            <a href="{% url 'servicemen_new_order' %}"><h1 class="card-title text-center">{{new_order}}</h1></a>
+
+        </div>
+    </div>
+        </div>
+        <div class="col">
+            <div class="card text-white bg-warning mb-3" style="max-width: 35rem;">
+                <div class="card-header text-center">My Orders</div>
+                <div class="card-body">
+                    <a href="{% url 'servicemen_order' %}"><h1 class="card-title text-center">{{your_order}}</h1></a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 {% endblock content %}

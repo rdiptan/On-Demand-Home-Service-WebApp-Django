@@ -1,4 +1,4 @@
-{% extends 'admins/layout-admin.html' %}
+{% extends 'index.html' %}
 {% load static %}
 {% block title %}
 <title>Admin-Dashboard</title>
@@ -68,16 +68,16 @@
     </div>
     <div class="row pt-2"> 
         <div class="col">
-            <div class="card text-white bg-danger mb-3" style="max-width: 35rem;">
+            <div class="card text-white bg-info mb-3" style="max-width: 35rem;">
                 <div class="card-header text-center">Total Servicemen</div>
                 <div class="card-body">
-                    <a href="#"><h1 class="card-title text-center">{{servicemen}}</h1></a>
+                    <a href="{% url 'admin_view_servicemen' %}"><h1 class="card-title text-center">{{servicemen}}</h1></a>
 
                 </div>
             </div>
         </div>
         <div class="col">
-            <div class="card text-white bg-success mb-3" style="max-width: 35rem;">
+            <div class="card text-white bg-secondary mb-3" style="max-width: 35rem;">
                 <div class="card-header text-center">Total Customers</div>
                 <div class="card-body">
                     <a href="#"><h1 class="card-title text-center">{{customer}}</h1></a>

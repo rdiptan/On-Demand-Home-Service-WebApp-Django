@@ -2,5 +2,9 @@
 {% load static %}
 {% block content %}
     <h1>Thank you for using our service</h1>
-    <a href="{% url 'service' %}">Need Other Service</a>
+    <div>
+        <iframe src="{% static 'images/complete.gif' %}" width="500" height="300" frameborder="0" class="giphy-embed" allowFullScreen></iframe>
+
+    </div>
+    <a class="btn btn-primary" href="{% url 'service' %}">Need Other Service</a>
 {% endblock content %}

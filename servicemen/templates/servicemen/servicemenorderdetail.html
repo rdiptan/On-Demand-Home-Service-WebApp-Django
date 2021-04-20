@@ -1,4 +1,4 @@
-{% extends 'servicemen/layout-servicemen.html' %}
+{% extends 'index.html' %}
 {% load static %}
 
 
@@ -18,7 +18,7 @@
             <hr>
             <h5>Service: {{ord_obj.service.name}}</h5>
             <h5>Problem: {{ord_obj.description}}</h5>
-            <h5>Servicemen: {{ord_obj.servicemen.created_by.first_name}} {{ord_obj.servicemen.created_by.first_name}}</h5>
+            <h5>Servicemen: {{ord_obj.servicemen.created_by.first_name}} {{ord_obj.servicemen.created_by.last_name}}</h5>
             <hr>
 
             <form action="{% url 'servicemen_orderstatus_change' ord_obj.id %}" method="POST">
